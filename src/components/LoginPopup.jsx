@@ -9,6 +9,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { validatePassword } from '../components/Utilities'
 import { usePopup } from "../contexts/PopupContext/PopupContext";
+import logo from "../assets/images/logo.png";
+import {getValueFromDictionary} from "../components/Utilities";
+
 
 const LoginPopup = () => {
   let [errorMessage, setErrorMessage] = useState("");
@@ -18,13 +21,14 @@ const LoginPopup = () => {
   const navigate = useNavigate();
 
   function onJoinNowClick() {
-    closePopup()
+    onPopupClose()
   }
 
   function onPopupClose() {
     setErrorMessage("")
     setEnteredUserName("")
     setEnteredPassword("")
+    closePopup()
   }
 
   function onChangeUserName(e) {
@@ -58,12 +62,12 @@ const LoginPopup = () => {
   }
 
   function onLogin() {
-    // let message = validatePassword(enteredPassword);
-    // if(message) {
-    //   console.log(message)
-    //   setErrorMessage(message == 'Required'? 'Password required' : "Invalid user name or password,  \n please enter your user name and passowrd.");
-    //   return;
-    // }
+    let message = validatePassword(enteredPassword);
+    if (message) {
+
+      setErrorMessage(message == 'Required' ? 'Password required *' : "Invalid user name or password  \r\n please try again.");
+      return;
+    }
 
     if (enteredUserName) {
       requestLogin().then((response) => {
@@ -71,16 +75,17 @@ const LoginPopup = () => {
 
           login(response.data);
 
-          toast.success(`Welcome back ${response.data.userResponse.firstName} ${response.data.userResponse.lastName}`,  {
-            position: toast.POSITION.TOP_CENTER
+          toast.success(`Welcome Back ${response.data.userResponse.firstName} ${response.data.userResponse.lastName}`, {
+            position: toast.POSITION.TOP_CENTER, draggable: false
           });
-          closePopup()
+          //toast.error(error.message, { draggable: false });
+          onPopupClose()
           var userId = response.data.userResponse.userId
           roleId == 1 ? navigate("/CarList") : (roleId > 1 ? navigate("/Reservation") : '');
         } else throw Error("No response.data");
       })
         .catch((error) => {
-    
+
           if (error.code == "ERR_NETWORK") {
             setErrorAndToastify(`Server is unavailable. \n Please contact your support.`)
             return;
@@ -108,50 +113,53 @@ const LoginPopup = () => {
 
   function getSignInUI() {
     return (<div className="popupLoginFrame"
-  
-      onClose={onPopupClose}>
-        <div className="arrow-up"></div>
-      <div className='popup-wrapper'>
-        <h1 className="signInMainTitle" style={{ marginTop: "5vmin" }}>Sign In to I&G Rental Car</h1>
-        <form className="loginForm">
 
-          <input
+      onClose={onPopupClose}>
+      <div className="arrow-up"></div>
+      <div className='popup-wrapper'>
+
+        <div className="grid-container">
+          <div className="item1 itemLeftBordered"><p><strong>Not a member yet?</strong></p></div>
+          <div className="item2"><p><strong>Sign In to {getValueFromDictionary('businessName')}</strong></p></div>
+
+          <div className="item3 itemLeftBordered"><div className="popUplogo"><img src={logo} alt="logo" /></div></div>
+
+          <div className="item4"><input
             type="text"
+            autoComplete="off"
             placeholder="User Name"
-            //autoComplete="off"
             name="username"
             value={enteredUserName}
             onChange={onChangeUserName}>
-          </input>
+          </input></div>
 
-          <input
+       
+          <div className="item6"><input
             type="password"
+            autoComplete="new-password"
             placeholder="Password"
             name="password"
-            // autoComplete="off"
             value={enteredPassword}
             onChange={onChangePassword}>
           </input>
+            {errorMessage ? (
+              <div className="text-danger new-line">{errorMessage}</div>
+            ) : (
+              ""
+            )}</div>
 
-          {errorMessage ? (
-            <div className="text-danger new-line">{errorMessage}</div>
-          ) : (
-            ""
-          )}
-
-
-          <div>
-            <Link to="Registration" className='continuePopout' onClick={onJoinNowClick}>Join now</Link></div>
-          <div>
-            <button variant="primary" className='continuePopout' type="button" onClick={onLogin}>
-              Continue
+          <div className="item7 itemLeftBordered"><div className='popoutButton joinNow'>
+            <Link to="Registration" onClick={onJoinNowClick}>Join now</Link>
+          </div></div>
+          <div className="item8">
+            <button variant="primary" className='popoutButton continue' type="button" onClick={onLogin}>
+              Sign in
             </button>
           </div>
-
-
-        </form>
+        </div>
 
       </div>
+
     </div>)
   }
 
@@ -170,8 +178,8 @@ const LoginPopup = () => {
     {(isLoggedIn ? getSignOutUI() :
       <>
         <button className="signInOut" style={{ marginLeft: 'auto', zIndex: 9999 }} onClick={() => {
-          isPopupOpen ? closePopup() : openPopup()
-        }}>{isLoggedIn ? "Sign out" : "Sign in / Join"}</button>
+          isPopupOpen ? onPopupClose() : openPopup()
+        }}>{isLoggedIn ? "Sign out" : "Join / Sign in"}</button>
         {isPopupOpen && getSignInUI()}
       </>)}
 

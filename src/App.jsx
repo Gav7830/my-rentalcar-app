@@ -18,6 +18,10 @@ import { RentalCarWebAPI_URL } from "./utils/settings";
 import axios from "axios";
 import { ProtectedRoute } from "./navigation/ProtectedRoute";
 import './App.css';
+import CookiePolicy from "./publicPages/CookiePolicy";
+import PrivacyPolicy from "./publicPages/PrivacyPolicy";
+
+
 
 
 function App() {
@@ -65,6 +69,7 @@ function App() {
   function logout() {
     clearTimeout(timerID);
     removeLoginData();
+    setRoleID(0);
     setIsLoggedIn(false);
   }
 
@@ -102,11 +107,30 @@ function App() {
             <Route
               path="TermsOfUse"
               element={
-                <ProtectedRoute>
+                // <ProtectedRoute>
                   <TermsOfUse />
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
+            <Route
+              path="CookiePolicy"
+              element={
+                // <ProtectedRoute>
+                  <CookiePolicy />
+                // </ProtectedRoute>
+              }
+            />
+            <Route
+              path="PrivacyPolicy"
+              element={
+                // <ProtectedRoute>
+                  <PrivacyPolicy />
+                // </ProtectedRoute>
+              }
+            />
+
+
+
 
             <Route path="Unauthorized" element={<UnauthorizedPage />} />
             <Route path="*" element={<NotFoundPage />} />

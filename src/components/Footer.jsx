@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaFacebook } from "react-icons/fa";
 import { BsYoutube } from "react-icons/bs";
+import { getValueFromDictionary } from "../components/Utilities";
+
 
 function Footer() {
     return (
@@ -10,13 +12,13 @@ function Footer() {
             <div className='footerNav'>
                 <div className='icons'>
                     <a target="_blank" href="https://www.facebook.com/">
-                        <FaFacebook size="4vmin" color= "rgb(37, 101, 190)" title="Facebook" /></a>
-                    
-                        <a target="_blank" href="https://www.youtube.com">
-                        <BsYoutube size="4vmin" color= "red" title="YouTube" /></a>
+                        <FaFacebook size="4vmin" color="rgb(37, 101, 190)" title="Facebook" /></a>
 
-                           <a target="_blank" href="https://www.twitter.com">
-                        <AiFillTwitterCircle size="4vmin" color= "RGB( 29, 161, 242)" title="Twitter" /></a>
+                    <a target="_blank" href="https://www.youtube.com">
+                        <BsYoutube size="4vmin" color="red" title="YouTube" /></a>
+
+                    <a target="_blank" href="https://www.twitter.com">
+                        <AiFillTwitterCircle size="4vmin" color="RGB( 29, 161, 242)" title="Twitter" /></a>
                 </div>
 
                 <ul>
@@ -28,26 +30,32 @@ function Footer() {
                     </li>
 
                     <li>
-                        <a target="_blank" href="https://privacy.ehi.com/en-us/home.html">
+
+                    <Link to={"/PrivacyPolicy"}>
                             Privacy Policy
-                        </a>
+                        </Link>
+
+                        
                     </li>
 
+
+
                     <li>
-                        <a target="_blank" href="https://privacy.ehi.com/en-us/home/cookie-policy.html">
+                        <Link to={"/CookiePolicy"}>
                             Cookie Policy
-                        </a>
+                        </Link>
+
                     </li>
 
-                    <li>
+                    {/* <li>
                         <a href="#one_trust" onClick={() => preventDefault()}>
                             Cookie Settings / AdChoices
                         </a>
-                    </li>
+                    </li> */}
 
                     <li>
                         <span>
-                            © 2023  I&G Rental Car, Inc. All Rights Reserved.
+                            © 2023  {getValueFromDictionary('businessName')}, Inc. All Rights Reserved.
                         </span>
                     </li>
                 </ul>

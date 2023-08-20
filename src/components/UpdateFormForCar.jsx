@@ -254,7 +254,7 @@ const UpdateFormForCar = ({ mode, args }) => {
                             </td>
                         </tr>
                         <tr>
-                            <td><label>Image </label></td>
+                            <td><label>Image {mode=="edit"?'':<span className="must">*</span>}</label></td>
                             <td>
                                 <input
                                     name="carImage"

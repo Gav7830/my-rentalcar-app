@@ -81,9 +81,8 @@ export default function RentCar({ rentIndex, car, routerLocationState, onClose }
                                         <table>
                                             <tbody>
                                                 <tr id="info1tr">
-
                                                     <td><GiGearStickPattern size="3vmin" color="black" title="Transmission" />{car.transmissionAndDrive.description}</td>
-                                                    <td><BsFillPersonFill size="3vmin" color="black" title="Passengers" /> {car.carModel.numberOfPeople}</td>
+                                                    <td><BsFillPersonFill size="3vmin" color="black" title="Passengers" />{car.carModel.numberOfPeople}</td>
                                                     <td><GiSuitcase size="3vmin" color="black" title="Suitcase" />{car.carModel.numberOfSsuitcases}</td>
                                                 </tr>
                                             </tbody>
@@ -99,10 +98,16 @@ export default function RentCar({ rentIndex, car, routerLocationState, onClose }
                                     <td><span>Price Per Day  <sup>$</sup>{car.car.pricePerDay} </span> <span className="price"> Total <sup>$</sup>{car.car.pricePerDay * delta}</span></td>
                                 </tr>
                             
-                                <tr>
                                
-                                    <td><h4 id='moreInfo' href="#!" onClick={() => setShowMoreDetails(!showMoreDetails)} >More Details </h4> </td>
-                                </tr>
+                                <tr><td>
+
+                                    <td><h4 id='moreInfo' href="#!" onClick={() => setShowMoreDetails(!showMoreDetails)} >Click For More Details </h4> </td>
+                              
+
+</td></tr>
+                             
+                                
+                              
 
                                 {showMoreDetails &&
                                     <>

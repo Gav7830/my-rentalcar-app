@@ -77,4 +77,16 @@ export function locationToString(location) {
     return `${location.city}, ${location.country}, ${location.airportCode}`
 }
 
+export function getValueFromDictionary(key){
+    const dict = {
+        businessName: "I&G Rental Car",
+        ownerName1: "Gavriel Dvir",
+        ownerName2: "Israel Igla"
+       
+      }
+      return dict[key] 
+
+}
+
+
 export default getAPI

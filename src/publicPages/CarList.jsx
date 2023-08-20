@@ -147,14 +147,19 @@ const CarList = () => {
   }
 
   function onCardClick(id) {
-   
+
     if (roleID > 1 && !routerLocation.state)
       navigate("/Reservation")
     setCarPopupIndex(id)
   }
 
+  function resetFilter() {
+    setInputs({})
+    setSearchText('')
+  }
+
   if (carListDisplayPage == null)
-    return <></>
+    return ''
 
   function getUpperPanel() {
     return <table style={{ borderBottom: "1px solid #c3c3c3", width: "100%" }}>
@@ -191,6 +196,7 @@ const CarList = () => {
             <td style={{ lineHeight: "0" }}><label><strong> &nbsp; Make</strong></label></td>
             <td>
               <select
+                style={{ width: "10vmin" }}
                 name="carCompanyName"
                 value={inputs.carCompanyName || ""}
                 onChange={handleChange} >
@@ -202,6 +208,7 @@ const CarList = () => {
             <td><label>  <strong> &nbsp;&nbsp;Model </strong></label></td>
             <td>
               <select
+                style={{ width: "10vmin" }}
                 name="carModel"
                 value={inputs.carModel || ""}
                 onChange={handleChange} >
@@ -211,14 +218,15 @@ const CarList = () => {
             </td>
 
             <td> &nbsp;
-              {inputs.carCompanyName || inputs.carModel ? <LuFilterX size="2.2vmin" title='Clear Filter' onClick={() => setInputs({})} /> :
+              {inputs.carCompanyName || inputs.carModel || searchText ? <LuFilterX size="2.2vmin" title='Clear Filter' onClick={() => resetFilter()} /> :
                 < BiFilterAlt size="2.2vmin" title='Filter' />}
             </td>
 
-            <th style={{ paddingLeft: "10vw" }}><p style={{ fontSize: "1vw", whiteSpace: "nowrap" }}>Search text</p></th>
+            {/* <th style={{ paddingLeft: "10vw" }}><p style={{ fontSize: "1vw", whiteSpace: "nowrap" }}>Search text</p></th> */}
+            <th>Search text</th>
             <td>
               <input
-                style={{ width: "10vw" }}
+                style={{ width: "20vmin" }}
                 type="text"
                 title='Press enter to submit'
                 onKeyDown={handleSearchKeyDown}
@@ -228,12 +236,14 @@ const CarList = () => {
                 onChange={(e) => { setSearchText(e.target.value); setSearchTextHasChanged(true) }}
               />
             </td>
-            <td style={{ paddingTop: "1vmin" }}>
-              <BsSearch size="2.2vmin" color='cornflowerblue' onClick={() => setSearchKeyPressed(true)} />
+            <td>
+              
+              <BsSearch size="2vmin"  onClick={() => setSearchKeyPressed(true)} />
             </td>
+     
             {roleID == 1 ?
-              <td style={{ float: 'right', paddingLeft: '20vw' }}>
-                <div style={{ float: 'right' }} title="Add Car" className={"addCarButton"}
+              <td>
+                <div title="Add Car" className={"addCarButton"}
                   onClick={addCar}>+</div>
               </td> : ''}
           </tr>

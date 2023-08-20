@@ -1,12 +1,13 @@
 import aboutCar  from "../assets/images/aboutCar.png";
+import {getValueFromDictionary} from "../components/Utilities";
 
 const AboutUs = () => {
   return <div className="aboutUsMainContainer">
 
     <div className="aboutUsTopContainer">
-      <h1>ABOUT I&G RENTAL CAR</h1>
+      <h1>ABOUT {getValueFromDictionary('businessName').toUpperCase() }</h1>
       <h2>
-        What's the I&G Way? Taking care of our customers,   <br />
+        What's the {getValueFromDictionary('businessName')} Way? Taking care of our customers,   <br />
         our communities, our employees and our environment.
       </h2>
 
@@ -21,7 +22,7 @@ const AboutUs = () => {
     <div className="aboutUsMiddleContainer">
       <h2>Culture and hard work created Enterprise</h2>
       <p>
-        I&G Rental Car is an ongoing Israeli success story. Our guiding principles, and humble beginning, revolve around personal honesty and integrity. We believe in strengthening our communities one neighborhood at a time, serving our customers as if they were our family, and rewarding hard work. These things are as true today as they were when we were founded in 2022.
+      {getValueFromDictionary('businessName')} is an ongoing Israeli success story. Our guiding principles, and humble beginning, revolve around personal honesty and integrity. We believe in strengthening our communities one neighborhood at a time, serving our customers as if they were our family, and rewarding hard work. These things are as true today as they were when we were founded in 2022.
         <br /><br />
         Today, our massive network means Enterprise is the largest transportation solutions provider. We offer car and truck rentals, as well as car sharing and car sales. We're there when you need us with over 8,000 locations worldwide.
         <br /><br />
@@ -31,7 +32,7 @@ const AboutUs = () => {
      <div className="aboutUsRightContainer">
       <h2>Did you know?</h2>
       <p>
-        Founders Israel Igla & Gabi Dvir selected the name I&G as a salute to the WWII aircraft carrier he served on. Today, the “I&G” name is synonymous with the leadership and vision of the business.
+        Founders {getValueFromDictionary('ownerName2')} & {getValueFromDictionary('ownerName1')} selected the name {getValueFromDictionary('businessName')} as a salute to the WWII aircraft carrier he served on. Today, the “{getValueFromDictionary('businessName')}” name is synonymous with the leadership and vision of the business.
       </p>
     </div>
 
@@ -44,7 +45,7 @@ const AboutUs = () => {
 
         With seven cars and a hunch that customers will<br />
         embrace the novel concept of leasing automobiles, <br />
-        Israel Igla & Gabi Dvir founds Executive Leasing Company in Israel.
+        {getValueFromDictionary('ownerName2')} & {getValueFromDictionary('ownerName1')} founds Executive Leasing Company in Israel.
       </p>
     </div>
   </div>

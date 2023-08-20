@@ -4,6 +4,7 @@ import { RentalCarWebAPI_URL } from "../utils/settings";
 import { validateEmail, validatePassword, checkError } from '../components/Utilities'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from "axios";
+import {getValueFromDictionary} from "../components/Utilities";
 
 const Registration = () => {
     let [firstName, setFirstName] = useState("");
@@ -133,7 +134,7 @@ const Registration = () => {
     function getRegistrationMainTitles() {
         return <>
             <div className="regMainTitle1">
-                <h1>Create Your I&G Plus Account</h1>
+                <h1>Create Your {getValueFromDictionary('businessName')} Plus Account</h1>
             </div>
             <div className="regMainTitle2">
                 <p>  Required to complete your enrollment *</p>

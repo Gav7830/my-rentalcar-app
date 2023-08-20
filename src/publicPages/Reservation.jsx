@@ -113,12 +113,12 @@ const Reservation = () => {
     return (
         <div id='reservationMainContainer' style={{
             backgroundImage: `url(${background})`,
-            height: '60vh'
+            height: '70vh'
         }}>
             {getReservationMainTitles()}
             <form className="reservationForm" onSubmit={browseCars}>
 
-                <div style={{ backgroundColor: "#f3f3f3", width: "100vmin", padding: 20, margin: "auto" }}>
+                <div style={{ backgroundColor: "#f3f3f3", width: "90vmin", padding: 20, margin: "auto" }}>
                     <Grid container>
                         <Grid item xs={12}>
                             {getLocationsAutocomplete()}

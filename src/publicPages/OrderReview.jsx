@@ -83,7 +83,7 @@ const OrderReview = () => {
             {getOrderReviewMainTitles()}
             <div id="orderReviewMain">
 
-                <div id="orderReview">
+                {/* <div id="orderReview"> */}
 
                     <table className="orderReview">
                         <tbody>
@@ -118,7 +118,7 @@ const OrderReview = () => {
                     <button id="btnCancelOrder" onClick={cancelOrder}>Back</button>
                     { enableSubmit && <button id="btnSubmitOrder" onClick={submitOrder}>Reserve Now</button> }
                 </div>
-            </div>
+            {/* </div> */}
         </>
 
     )
