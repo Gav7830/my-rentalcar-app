@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { getImagesUrl } from "./Utilities";
 import { getAPI, checkError } from './Utilities'
 import { RentalCarWebAPI_URL } from "../utils/settings";
 import axios from "axios";
