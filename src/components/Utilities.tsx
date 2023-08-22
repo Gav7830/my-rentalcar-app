@@ -16,14 +16,6 @@ export const getAPI = async (url: string, data: any): Promise<any> => {
     })
 }
 
-export function getAllCarModels() {
-    return ["", "1 Series", "GT", "Q7", "i20", "323", "626", "XC40", "S60/V60", "Prius", "Yaris", "C-HR"];
-}
-
-export function getImagesUrl() {
-    return "https://raw.githubusercontent.com/Gav7830/Pictures/main/";
-
-}
 
 
 export function validatePassword(password) {
